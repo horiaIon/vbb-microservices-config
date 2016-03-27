@@ -1,0 +1,119 @@
+spring.jpa:
+  database: MYSQL
+  show-sql: false
+  properties.hibernate:
+    format_sql: true
+    dialect: org.hibernate.dialect.MySQLDialect
+    cache:
+      use_second_level_cache: true
+      use_query_cache: true
+      provider_configuration: classpath:ehcache.xml
+      use_structured_entries: true
+      region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+
+## Hystrix
+hystrix:
+  enabled: false
+  command.default.execution.timeout.enabled: false
+
+################### flyway -- first run vbb_db_init.sql to create the db
+flyway:
+  enabled: true
+  baseline-on-migrate: true
+################### end flyway
+
+spring.devtools:
+  remote.restart.enabled: false
+  livereload.enabled: true
+
+virtualbetbuddy:
+  securityRememberMeKey: '{cipher}f222f79ff6338ffc82d23398b5b70cdf2e4f6d1593ff25796c420c19497482b1'
+
+captcha:
+  useproxy: false
+  proxyhost:
+  faiureurl: /
+  privatekey: '{cipher}e7556863a465ee3a567740cdf97d913fbabd16979bdecf449705a3ae9da650900a6dbc88b7fea82bdf9bea3f20e0f214bfee09915440e4514a3fdaba5f3013e8'
+
+facebook:
+  permissions: email,user_friends
+
+############### async parameters for default executor
+DefaultExecutor:
+  corePoolSize: 2
+  maxPoolSize: 8
+  queueCapacity: 10000
+############### end async parameters
+
+---
+################################ CLOUD PROFILE ######################
+spring:
+  profiles: cloud
+eureka:
+  instance:
+    hostname: ${APPLICATION_DOMAIN}
+    nonSecurePort: 80
+
+---
+################################ DEV PROFILE ######################
+spring:
+  profiles: dev
+
+spring.jpa.properties.hibernate.default_schema: vbb
+
+##### DATASOURCE
+c3p0.datasource:
+  initialPoolSize: 10
+  minPoolSize: 10
+  maxPoolSize: 100
+  maxStatements: 150
+  testConnectionOnCheckin: true
+  idleConnectionTestPeriod: 50
+
+spring.datasource:
+  driver-class-name: com.mysql.jdbc.Driver
+  url: jdbc:mysql://127.0.0.1:3306/vbb
+  username: root
+  password: asd1234
+
+server:
+  timezone: Europe/Bucharest
+
+application:
+  url: http://torjeion.ro:8080/
+
+facebook:
+  app:
+    id: '{cipher}e38c68f3d7eb95a68aac1a82a0992a6a5c550165da1f92781cc7b474db01ec9c'
+    secret: '{cipher}1d88ff1613b7716001b12e428cfd951b42b21548fef353014e5404a8f48828920690992ad3b0e19c49ddc67e85449b3f2144248fe902de66c6a801d77ea2966a'
+
+---
+################################ PROD PROFILE ######################
+spring:
+  profiles: prod
+
+spring.jpa.properties.hibernate.default_schema: ad_45cfd2a37a2494f
+
+##### DATASOURCE
+c3p0.datasource:
+  initialPoolSize: 2
+  minPoolSize: 2
+  maxPoolSize: 2
+  maxStatements: 50
+  testConnectionOnCheckin: true
+  idleConnectionTestPeriod: 50
+
+server:
+  timezone: UTC
+
+application:
+  url: http://www.virtualbetbuddy.com
+
+#logging:
+#  level:
+#    ROOT: INFO
+
+facebook:
+  app:
+    id: '{cipher}df5994014811e1698259d186b24ef2c943a0d390660f8ef805c4ee135dc7a46b'
+    secret: '{cipher}2c5c9f7dabeef50b3468f02e867be9b9664812efb7e4230d9da4ecde22bc8483f3eb8ac498b226583897510676dfc8641c01094604ec73f29a3deaef15b76153'

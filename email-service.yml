@@ -1,0 +1,36 @@
+spring.mail:
+  host: smtp.gmail.com
+  port: 587
+  username: '{cipher}4ef27383d6f69809ece1af3107cdf5484088a314ce2f3f8cac2aa69ffe8b2ef50051706c2a32d687f120237aa6f72f55'
+  password: '{cipher}db66036111eab8079038a07800db2e13add138ddd747da9971d9ee222405765d'
+  properties.mail:
+    transport.protocol: smtp
+    smtp:
+      auth: true
+      starttls.enable: true
+      ssl.trust: smtp.gmail.com
+    debug: false
+mail.from: VirtualBetBuddy
+
+# INTERNATIONALIZATION (MessageSourceAutoConfiguration)
+spring.messages:
+  basename: messages # Comma-separated list of basenames, each following the ResourceBundle convention.
+  encoding: UTF-8 # Message bundles encoding.
+
+# THYMELEAF (ThymeleafAutoConfiguration)
+spring.thymeleaf:
+  cache: true # Enable template caching.
+  check-template-location: true # Check that the templates location exists.
+  content-type: text/html # Content-Type value.
+  encoding: UTF-8 # Template encoding.
+  mode: HTML5 # Template mode to be applied to templates. See also StandardTemplateModeHandlers.
+  prefix: classpath:/mails/ # Prefix that gets prepended to view names when building a URL.
+  suffix: .html # Suffix that gets appended to view names when building a URL.
+
+---
+spring:
+  profiles: cloud
+eureka:
+  instance:
+    hostname: ${APPLICATION_DOMAIN}
+    nonSecurePort: 80
