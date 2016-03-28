@@ -10,9 +10,9 @@ BASEDIR=`pwd`
 [ ! -f "./bin/test-java.sh" ] && echo "Cannot find ./bin/test-java.sh" && exit 1
 . ./bin/test-java.sh
 
-success "Starting onyx-request into directory: $PWD"
+success "Starting vbb-app into directory: $PWD"
 
-for file in "./bin/extra[0-9]*-onyx-request.sh"; do
+for file in "./bin/extra[0-9]*-vbb-app.sh"; do
     [ -r "$file" ] && source "$file" &&  success "$file loaded !"
 done
 unset file
@@ -23,21 +23,21 @@ mkdir -p ./logs
 REGEX_RD=".*--remote-debug.*"
 
 ### Variables coming from deploy-it
-export UNICORN_JAVA_HOME="$HOME/jdk8" #
+export VBB_JAVA_HOME="$HOME/jdk8" #
 
-[ ! -d "${UNICORN_JAVA_HOME}" ] &&  export UNICORN_JAVA_HOME=${JAVA_HOME}
+[ ! -d "${VBB_JAVA_HOME}" ] &&  export VBB_JAVA_HOME=${JAVA_HOME}
 ###
-JAVA_CMD=${UNICORN_JAVA_HOME}/bin/java
+JAVA_CMD=${VBB_JAVA_HOME}/bin/java
 
-jarFile="./lib/onyx-request.jar"
+jarFile="./lib/vbb-app.jar"
 remoteDebugOption="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
-prog="onyx-request"
+prog="vbb-app"
 timeoutForPID="10"
 timeoutForKill=${timeoutForPID}
 configDir="${BASEDIR}/config"
 runDir="${BASEDIR}/run"
 logDir="${BASEDIR}/logs"
-PROG_PATTERN_GREP="onyx-request"
+PROG_PATTERN_GREP="vbb-app"
 OUTPUT_FILE="${logDir}/${prog}.out"
 PID_FILE="$runDir/application.pid"
 
@@ -90,14 +90,14 @@ start() {
    	   return 1
      fi
 
-    # declare this variable into ./bin/onyx-request-extra.sh for instance
+    # declare this variable into ./bin/vbb-app-extra.sh for instance
     if [[  -n "$IS_STATEFULL" && "$IS_STATEFULL" = "true" ]]
     then
         checkStateFull
         [ $? -ne 0 ] && return 2
     fi
 
-    CMD_LINE="$exec --spring.config.name=onyx-request --spring.pidfile=$PID_FILE $* > $OUTPUT_FILE 2>&1 &"
+    CMD_LINE="$exec --spring.config.name=vbb-app --spring.pidfile=$PID_FILE $* > $OUTPUT_FILE 2>&1 &"
     # if not running, start it up here, usually something like "daemon $exec"
     eval ${CMD_LINE}
 
@@ -228,7 +228,7 @@ rh_status_q() {
 }
 
 jdump() {
-    jstack="${UNICORN_JAVA_HOME}/bin/jstack"
+    jstack="${VBB_JAVA_HOME}/bin/jstack"
     [ ! -x "${jstack}" ] && echo "$jstack not found" && return 1
     currentPid=`jpid`
     if [ $? -eq 0 ]
@@ -242,7 +242,7 @@ jdump() {
     fi
 }
 
-checkJava ${UNICORN_JAVA_HOME} 8
+checkJava ${VBB_JAVA_HOME} 8
 if [ ! -f "${jarFile}" ]
 then
     echo "${jarFile} doesn't exist"

@@ -1,10 +1,5 @@
 #!/bin/sh
 
-utilBaseDir=/$HOME/DEV/ccd-unicorn-services/bin
-
-fname=`declare -f -F "success"`
-[ -z "$fname" ] && . ${utilBaseDir}/utils.sh
-
 #### need 2 args:
 ## First is a path pointing on java installation directory
 ## Second is a minimal version (1.6 == 6, 1.7 == 7 ...)

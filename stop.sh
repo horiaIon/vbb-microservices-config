@@ -4,4 +4,4 @@ BASEDIR=`dirname $0`/..
 cd $BASEDIR
 BASEDIR=`pwd`
 
-${BASEDIR}/bin/onyx-request.sh stop $*
+${BASEDIR}/bin/vbb-app.sh stop $*
