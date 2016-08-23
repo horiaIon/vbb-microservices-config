@@ -26,7 +26,7 @@ spring:
       format_sql: true
       dialect: org.hibernate.dialect.MySQLDialect
       cache:
-        use_second_level_cache: true
+        use_second_level_cache: false
 #  devtools:
 #    livereload:
 #      port: 35728
