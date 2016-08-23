@@ -1,0 +1,45 @@
+captcha:
+  useproxy: false
+  proxyhost:
+  faiureurl: /
+  privatekey: '{cipher}e7556863a465ee3a567740cdf97d913fbabd16979bdecf449705a3ae9da650900a6dbc88b7fea82bdf9bea3f20e0f214bfee09915440e4514a3fdaba5f3013e8'
+  
+vbb:
+  securityRememberMeKey: '{cipher}f222f79ff6338ffc82d23398b5b70cdf2e4f6d1593ff25796c420c19497482b1'
+  
+---
+################################ DEV PROFILE ######################
+spring:
+  profiles: dev
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/vbb
+    username: root
+    password: asd1234
+    maxActive: 100
+    testOnBorrow: true
+    validationQuery: SELECT 1
+  jpa:
+    database: MYSQL
+    show-sql: true
+    properties.hibernate:
+      format_sql: true
+      dialect: org.hibernate.dialect.MySQLDialect
+      cache:
+        use_second_level_cache: true
+#  devtools:
+#    livereload:
+#      port: 35728
+
+server:
+  timezone: Europe/Bucharest
+
+application:
+  url: http://localhost:8070/
+
+facebook:
+  app:
+    id: '{cipher}e38c68f3d7eb95a68aac1a82a0992a6a5c550165da1f92781cc7b474db01ec9c'
+    secret: '{cipher}1d88ff1613b7716001b12e428cfd951b42b21548fef353014e5404a8f48828920690992ad3b0e19c49ddc67e85449b3f2144248fe902de66c6a801d77ea2966a'
