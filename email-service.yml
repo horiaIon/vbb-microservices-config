@@ -26,11 +26,3 @@ spring.thymeleaf:
   mode: HTML5 # Template mode to be applied to templates. See also StandardTemplateModeHandlers.
   prefix: classpath:/mails/ # Prefix that gets prepended to view names when building a URL.
   suffix: .html # Suffix that gets appended to view names when building a URL.
-
----
-spring:
-  profiles: cloud
-eureka:
-  instance:
-    hostname: ${APPLICATION_DOMAIN}
-    nonSecurePort: 80
