@@ -4,14 +4,6 @@ spring.cloud.config.server.prefix: /config
 management:
   port: ${server.port}
 
-info:
-  group: @project.groupId@
-  artifact: @project.artifactId@
-  name: @project.name@
-  description: @project.description@
-  version: @project.version@
-  stage: ${spring.profiles.active}
-
 security.user.password: '{cipher}b41023644bca630173be9ef89a38fb0c8798f059a65258cb29f057afef18fa23'
 
 ---
