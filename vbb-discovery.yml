@@ -1,5 +1,5 @@
 server.port: ${vcap.application.port:8761}
-spring.cloud.config.server.prefix: /config
+spring.cloud.config.server.prefix: config
 
 management:
   port: ${server.port}
