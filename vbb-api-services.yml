@@ -33,6 +33,10 @@ DefaultExecutor:
   queueCapacity: 10000
 ############### end async parameters
 
+vbb.app:
+  users:
+    boborel: '{cipher}8f18d3e9dffce1b4349482b6e019decc9a8f2bded14e6e10bfbc005eb197087f2a66038c2c24dc65172ddfa1d5ff54df'
+  basic.authentication: '{cipher}53329d2fb6c7c439c5dea14de5ddcb3c710bba4d48dd89dc5d3834a347dee9765122fbd02ef323b090becfe281fbe4a4'
 
 spring.mail:
   host: smtp.gmail.com
@@ -126,7 +130,7 @@ spring:
 #        region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
 eureka:
   instance:
-    #I do this because my services don’t use fixed DNS. APPLICATION_DOMAIN is an environment variable I set in my deploy scripts that tells a service what its externally referenceable URI is
+    #I do this because my services donâ€™t use fixed DNS. APPLICATION_DOMAIN is an environment variable I set in my deploy scripts that tells a service what its externally referenceable URI is
     hostname: ${APPLICATION_DOMAIN}
     nonSecurePort: 80
 
