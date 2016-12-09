@@ -1,0 +1,162 @@
+server:
+  timezone: Europe/Bucharest
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 3
+    leaseExpirationIntervalInSeconds: 5
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+  client:
+    registerWithEureka: true
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: ${vcap.services.vbb-discovery.credentials.uri:http://127.0.0.1:8761}/eureka/
+
+# Hystrix
+hystrix:
+  enabled: false
+  command.default.execution.timeout.enabled: false
+
+
+############  Actuator properties #############
+management:
+  port: ${server.port}
+############  END Actuator properties #############
+
+
+############### async parameters for default executor
+DefaultExecutor:
+  corePoolSize: 2
+  maxPoolSize: 8
+  queueCapacity: 10000
+############### end async parameters
+
+
+spring.mail:
+  host: smtp.gmail.com
+  port: 587
+  username: '{cipher}4ef27383d6f69809ece1af3107cdf5484088a314ce2f3f8cac2aa69ffe8b2ef50051706c2a32d687f120237aa6f72f55'
+  password: '{cipher}db66036111eab8079038a07800db2e13add138ddd747da9971d9ee222405765d'
+  properties.mail:
+    transport.protocol: smtp
+    smtp:
+      auth: true
+      starttls.enable: true
+      ssl.trust: smtp.gmail.com
+    debug: false
+mail.from: VirtualBetBuddy
+
+# INTERNATIONALIZATION (MessageSourceAutoConfiguration)
+spring.messages:
+  basename: messages # Comma-separated list of basenames, each following the ResourceBundle convention.
+  encoding: UTF-8 # Message bundles encoding.
+
+# THYMELEAF (ThymeleafAutoConfiguration)
+spring.thymeleaf:
+  cache: true # Enable template caching.
+  check-template-location: true # Check that the templates location exists.
+  content-type: text/html # Content-Type value.
+  encoding: UTF-8 # Template encoding.
+  mode: HTML5 # Template mode to be applied to templates. See also StandardTemplateModeHandlers.
+  prefix: classpath:/mails/ # Prefix that gets prepended to view names when building a URL.
+  suffix: .html # Suffix that gets appended to view names when building a URL.
+
+flyway:
+  enabled: true
+  locations: classpath:db/migration
+
+---
+spring:
+  profiles: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/vbb
+    username: root
+    password: asd1234
+    maxActive: 100
+    testOnBorrow: true
+    validationQuery: SELECT 1
+  jpa:
+    database: MYSQL
+    show-sql: true
+    properties.hibernate:
+      format_sql: true
+      dialect: org.hibernate.dialect.MySQLDialect
+      cache:
+        use_second_level_cache: false
+#        TODO de vazut cash distribuit in cloud
+#        use_second_level_cache: true
+#        use_query_cache: true
+#        provider_configuration: classpath:ehcache.xml
+#        use_structured_entries: true
+#        region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 3
+    leaseExpirationIntervalInSeconds: 5
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+  client:
+    registerWithEureka: true
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: ${vcap.services.vbb-discovery.credentials.uri:http://127.0.0.1:8761}/eureka/
+      
+---
+spring:
+  profiles: cloud
+  jpa:
+    database: MYSQL
+    show-sql: false
+    properties.hibernate:
+      default_schema: '{cipher}6000382b5c9a9b2c52da6b64b54a5317ddb586a9fc5f542e6d98af683ab08172ff137a4edaeed08a95cff3105aee88472f17'
+      format_sql: false
+      dialect: org.hibernate.dialect.MySQLDialect
+      cache:
+        use_second_level_cache: false
+#        TODO de vazut cash distribuit in cloud
+#        use_second_level_cache: true
+#        use_query_cache: true
+#        provider_configuration: classpath:ehcache.xml
+#        use_structured_entries: true
+#        region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+eureka:
+  instance:
+    #I do this because my services don’t use fixed DNS. APPLICATION_DOMAIN is an environment variable I set in my deploy scripts that tells a service what its externally referenceable URI is
+    hostname: ${APPLICATION_DOMAIN}
+    nonSecurePort: 80
+
+---
+spring:
+  profiles: docker
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_PORT_3306_TCP_ADDR}:${MYSQL_PORT_3306_TCP_PORT}/${MYSQL_ENV_MYSQL_DATABASE}
+    username: root
+    password: ${MYSQL_ENV_MYSQL_ROOT_PASSWORD}
+    maxActive: 100
+    testOnBorrow: true
+    validationQuery: SELECT 1
+  jpa:
+    database: MYSQL
+    show-sql: true
+    properties.hibernate:
+      format_sql: true
+      dialect: org.hibernate.dialect.MySQLDialect
+      cache:
+        use_second_level_cache: false
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://vbb-discovery:8761/eureka/
+  instance:
+    leaseRenewalIntervalInSeconds: 3
+    leaseExpirationIntervalInSeconds: 5
+    preferIpAddress: true
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
