@@ -3,10 +3,48 @@ captcha:
   proxyhost:
   faiureurl: /
   privatekey: '{cipher}e7556863a465ee3a567740cdf97d913fbabd16979bdecf449705a3ae9da650900a6dbc88b7fea82bdf9bea3f20e0f214bfee09915440e4514a3fdaba5f3013e8'
-  
+
+############### async parameters for default executor
+DefaultExecutor:
+  corePoolSize: 2
+  maxPoolSize: 8
+  queueCapacity: 10000
+############### end async parameters
+
+spring.http.multipart.max-file-size: 200KB
+
+management:
+  port: ${server.port}
+#  security:
+#    enabled: true
+
+zuul:
+  ignoredServices: "*"
+  routes:
+    email:
+      path: /email/**
+      serviceId: vbb-email
+    api-services:
+      path: /api-services/**
+      serviceId: vbb-api-services
+      stripPrefix: false
+
+# Hystrix
+hystrix:
+  enabled: false
+  command.default.execution.timeout.enabled: false
+
+vbb-api-services:
+  ribbon:
+    ConnectTimeout: 10000 # Connect timeout used by Apache HttpClient
+    ReadTimeout: 20000 # Read timeout used by Apache HttpClient
+    maxAutoRetries: 2 # Max number of retries on the same server (excluding the first try)
+    MaxAutoRetriesNextServer: 2 # Max number of next servers to retry (excluding the first server)
+
 vbb:
   securityRememberMeKey: '{cipher}f222f79ff6338ffc82d23398b5b70cdf2e4f6d1593ff25796c420c19497482b1'
-  
+  app.basic.authentication: '{cipher}53329d2fb6c7c439c5dea14de5ddcb3c710bba4d48dd89dc5d3834a347dee9765122fbd02ef323b090becfe281fbe4a4'
+
 ---
 ################################ DEV PROFILE ######################
 spring:
@@ -27,15 +65,69 @@ spring:
       dialect: org.hibernate.dialect.MySQLDialect
       cache:
         use_second_level_cache: false
+  resources:
+    static-locations: classpath:/static/dist.dev/
+  devtools:
+    livereload.enabled: true
 #  devtools:
 #    livereload:
 #      port: 35728
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 3
+    leaseExpirationIntervalInSeconds: 5
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+  client:
+    registerWithEureka: true
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: ${vcap.services.vbb-discovery.credentials.uri:http://127.0.0.1:8761}/eureka/
 
 server:
   timezone: Europe/Bucharest
 
 application:
   url: http://localhost:8070/
+
+facebook:
+  app:
+    id: '{cipher}e38c68f3d7eb95a68aac1a82a0992a6a5c550165da1f92781cc7b474db01ec9c'
+    secret: '{cipher}1d88ff1613b7716001b12e428cfd951b42b21548fef353014e5404a8f48828920690992ad3b0e19c49ddc67e85449b3f2144248fe902de66c6a801d77ea2966a'
+
+---
+spring:
+  profiles: docker
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_PORT_3306_TCP_ADDR}:${MYSQL_PORT_3306_TCP_PORT}/${MYSQL_ENV_MYSQL_DATABASE}
+    username: root
+    password: ${MYSQL_ENV_MYSQL_ROOT_PASSWORD}
+    maxActive: 100
+    testOnBorrow: true
+    validationQuery: SELECT 1
+  jpa:
+    database: MYSQL
+    show-sql: true
+    properties.hibernate:
+      format_sql: true
+      dialect: org.hibernate.dialect.MySQLDialect
+      cache:
+        use_second_level_cache: false
+  resources:
+    static-locations: classpath:/static/dist.dev/
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://vbb-discovery:8761/eureka/
+  instance:
+    preferIpAddress: true
+
+server:
+  timezone: Europe/Bucharest
 
 facebook:
   app:
