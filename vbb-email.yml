@@ -1,3 +1,10 @@
+logging:
+  level:
+    org.springframework:
+#      security: DEBUG
+      cloud:
+        config.client.ConfigServicePropertySourceLocator: ERROR
+
 spring.mail:
   host: smtp.gmail.com
   port: 587
@@ -26,3 +33,48 @@ spring.thymeleaf:
   mode: HTML5 # Template mode to be applied to templates. See also StandardTemplateModeHandlers.
   prefix: classpath:/mails/ # Prefix that gets prepended to view names when building a URL.
   suffix: .html # Suffix that gets appended to view names when building a URL.
+
+management:
+  port: ${server.port}
+vbb.app:
+  users:
+    boborel: '{cipher}8f18d3e9dffce1b4349482b6e019decc9a8f2bded14e6e10bfbc005eb197087f2a66038c2c24dc65172ddfa1d5ff54df'
+
+---
+spring:
+  profiles: dev
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 3
+    leaseExpirationIntervalInSeconds: 5
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+  client:
+    registerWithEureka: true
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: ${vcap.services.vbb-discovery.credentials.uri:http://127.0.0.1:8761}/eureka/
+
+---
+spring:
+  profiles: cloud
+eureka:
+  instance:
+    #I do this because my services don’t use fixed DNS. APPLICATION_DOMAIN is an environment variable I set in my deploy scripts that tells a service what its externally referenceable URI is
+    hostname: ${APPLICATION_DOMAIN}
+    nonSecurePort: 80
+
+---
+spring:
+  profiles: docker
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://vbb-discovery:8761/eureka/
+  instance:
+    leaseRenewalIntervalInSeconds: 3
+    leaseExpirationIntervalInSeconds: 5
+    preferIpAddress: true
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
