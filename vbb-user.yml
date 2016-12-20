@@ -31,7 +31,6 @@ zuul:
     discovery:
       path: /discovery/**
       serviceId: vbb-discovery
-      stripPrefix: false
 
 # Hystrix
 hystrix:
