@@ -28,6 +28,10 @@ zuul:
       path: /api-services/**
       serviceId: vbb-api-services
       stripPrefix: false
+    discovery:
+      path: /discovery/**
+      serviceId: vbb-discovery
+      stripPrefix: false
 
 # Hystrix
 hystrix:
