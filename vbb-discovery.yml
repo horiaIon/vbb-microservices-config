@@ -20,7 +20,6 @@ eureka:
     fetchRegistry: false
   server:
     enableSelfPreservation: false
-    waitTimeInMsWhenSyncEmpty: 0
 
 ---
 ################################ DOCKER PROFILE ######################
