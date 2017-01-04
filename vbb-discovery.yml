@@ -16,7 +16,7 @@ spring:
 
 eureka:
   client:
-    registerWithEureka: false
+    registerWithEureka: true
     fetchRegistry: false
   server:
     enableSelfPreservation: false
@@ -30,7 +30,7 @@ eureka:
   instance:
     hostname: vbb-discovery
   client:
-    registerWithEureka: false
+    registerWithEureka: true
     fetchRegistry: false
     serviceUrl:
       defaultZone: http://vbb-discovery:${server.port}/eureka/
