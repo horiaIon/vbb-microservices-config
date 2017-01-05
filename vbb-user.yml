@@ -32,8 +32,9 @@ zuul:
       path: /discovery/**
       serviceId: vbb-discovery
     diffusion:
-      path: /diffusion/**
+      path: /api-diffusion/**
       serviceId: vbb-diffusion
+      stripPrefix: false
 
 # Hystrix
 hystrix:
