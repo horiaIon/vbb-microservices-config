@@ -31,6 +31,9 @@ zuul:
     discovery:
       path: /discovery/**
       serviceId: vbb-discovery
+    diffusion:
+      path: /diffusion/**
+      serviceId: vbb-diffusion
 
 # Hystrix
 hystrix:
@@ -38,6 +41,13 @@ hystrix:
   command.default.execution.timeout.enabled: false
 
 vbb-api-services:
+  ribbon:
+    ConnectTimeout: 10000 # Connect timeout used by Apache HttpClient
+    ReadTimeout: 20000 # Read timeout used by Apache HttpClient
+    maxAutoRetries: 2 # Max number of retries on the same server (excluding the first try)
+    MaxAutoRetriesNextServer: 2 # Max number of next servers to retry (excluding the first server)
+    
+vbb-diffusion:
   ribbon:
     ConnectTimeout: 10000 # Connect timeout used by Apache HttpClient
     ReadTimeout: 20000 # Read timeout used by Apache HttpClient
