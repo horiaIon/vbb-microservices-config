@@ -109,7 +109,7 @@ eureka:
       enabled: true
     serviceUrl:
       defaultZone: ${vcap.services.vbb-discovery.credentials.uri:http://127.0.0.1:8761}/eureka/
-      
+vbb.gateway.url: http://localhost:8070
 ---
 spring:
   profiles: cloud
