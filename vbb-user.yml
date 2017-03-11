@@ -110,7 +110,7 @@ facebook:
   app:
     id: '{cipher}e38c68f3d7eb95a68aac1a82a0992a6a5c550165da1f92781cc7b474db01ec9c'
     secret: '{cipher}1d88ff1613b7716001b12e428cfd951b42b21548fef353014e5404a8f48828920690992ad3b0e19c49ddc67e85449b3f2144248fe902de66c6a801d77ea2966a'
-
+vbb.gateway.url: http://localhost:8070
 ---
 spring:
   profiles: docker
