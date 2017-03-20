@@ -19,6 +19,8 @@ eureka:
     registerWithEureka: true
     fetchRegistry: false
   server:
+    responseCacheUpdateIntervalMs: 500
+    evictionIntervalTimerInMs: 500
     enableSelfPreservation: false
 
 ---
