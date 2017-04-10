@@ -71,6 +71,12 @@ flyway:
   enabled: true
   locations: classpath:db/migration
 
+captcha:
+  useproxy: false
+  proxyhost:
+  faiureurl: /
+  privatekey: '{cipher}e7556863a465ee3a567740cdf97d913fbabd16979bdecf449705a3ae9da650900a6dbc88b7fea82bdf9bea3f20e0f214bfee09915440e4514a3fdaba5f3013e8'
+
 ---
 spring:
   profiles: dev
