@@ -40,3 +40,17 @@ eureka:
     waitTimeInMsWhenSyncEmpty: 0
 
 #spring.cloud.config.discovery.enabled: true
+
+---
+################################ AWS PROFILE ######################
+spring:
+  profiles: aws
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: false
+  server:
+    #responseCacheUpdateIntervalMs: 500
+    #evictionIntervalTimerInMs: 500
+    enableSelfPreservation: false
