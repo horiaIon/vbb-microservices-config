@@ -9,7 +9,7 @@ eureka:
     healthcheck:
       enabled: true
     serviceUrl:
-      defaultZone: ${vcap.services.vbb-discovery.credentials.uri:http://127.0.0.1:8761}/eureka/
+      defaultZone: ${vbb-discovery.credentials.uri:http://127.0.0.1:8761}/eureka/
     
 # Hystrix
 hystrix:
