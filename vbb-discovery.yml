@@ -79,3 +79,6 @@ eureka:
     #responseCacheUpdateIntervalMs: 500
     #evictionIntervalTimerInMs: 500
     enableSelfPreservation: false
+    aWSAccessId: AWS_KEY
+    aWSSecretKey: AWS_SECRET_KEY
+    asgName: EC2ContainerService_AUTO_SCALING_GROUP_CREATED_BY_ECS_FOR_MY_CLUSTER
