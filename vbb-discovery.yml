@@ -65,9 +65,16 @@ eureka:
   instance:
     statusPageUrlPath: ${management.context-path}/info
     healthCheckUrlPath: ${management.context-path}/health
+  environment: test
+  datacenter: cloud
   client:
+    eurekaServerDNSName: test.vbb.com
+    region: eu-central-1
     registerWithEureka: true
-    fetchRegistry: false
+    fetchRegistry: true
+    eurekaServerURLContext: eureka
+    #eurekaServerPort: 8761
+    useDnsForFetchingServiceUrls: true
   server:
     #responseCacheUpdateIntervalMs: 500
     #evictionIntervalTimerInMs: 500
