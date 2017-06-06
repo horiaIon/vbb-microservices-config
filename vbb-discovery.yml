@@ -1,7 +1,6 @@
 spring.cloud.config.server.prefix: config
-
-management:
-  port: ${server.port}
+  
+management.context-path=/manage
 
 security:
   user:
@@ -22,6 +21,9 @@ eureka:
     #evictionIntervalTimerInMs: 500
     enableSelfPreservation: false
 
+management:
+  port: ${server.port}
+
 ---
 ################################ DOCKER PROFILE ######################
 spring:
@@ -38,6 +40,9 @@ eureka:
   server:
     enableSelfPreservation: false
     waitTimeInMsWhenSyncEmpty: 0
+
+management:
+  port: ${server.port}
 
 #spring.cloud.config.discovery.enabled: true
 
