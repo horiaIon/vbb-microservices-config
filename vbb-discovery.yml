@@ -54,7 +54,7 @@ spring:
 logging:
   level:
     ROOT: INFO
-    org.springframework.security: DEBUG
+    org.springframework.security: INFO
 
 eureka:
   client:
