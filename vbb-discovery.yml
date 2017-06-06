@@ -1,6 +1,4 @@
 spring.cloud.config.server.prefix: config
-  
-management.context-path: /manage
 
 security:
   user:
