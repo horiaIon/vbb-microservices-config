@@ -5,6 +5,8 @@ security:
     name: '{cipher}51a0c7772cb362c79f0bb6f2d884cec7001ee523aa98ada57a7b68e269f948cdc9b4ef74abe61fc6be5115f4694eb588'
     password: '{cipher}b41023644bca630173be9ef89a38fb0c8798f059a65258cb29f057afef18fa23'
 
+management.security.roles: ACTUATOR
+
 ---
 ################################ DEV PROFILE ######################
 spring:
@@ -48,6 +50,11 @@ management:
 ################################ AWS PROFILE ######################
 spring:
   profiles: aws
+
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.security: DEBUG
 
 eureka:
   client:
