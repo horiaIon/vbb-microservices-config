@@ -58,7 +58,7 @@ spring:
 
 logging:
   level:
-    ROOT: DEBUG
+    ROOT: INFO
     #org.springframework.security: INFO
 
 eureka:
