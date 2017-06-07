@@ -10,7 +10,7 @@ management:
 
 vbb.app:
   users:
-    boborel: '{cipher}b9b9d3b02e3b1c03aaf98ce78970e1e51b320f8a854d9206cce10a31c8a106a3295a0929ba36ffafc201e27dc746f2fd7768a32f39f2003551d85eb9030094d3'
+    boborel: '{cipher}5befb33659c72b2569005783dbbfda67766d5991d90ac5c5302dda8860f0bd5a70cb545a499fa7ce9a7c34c112c091906900174c9d0e869e59260fe628d83b0d'
   basic.authentication: '{cipher}53329d2fb6c7c439c5dea14de5ddcb3c710bba4d48dd89dc5d3834a347dee9765122fbd02ef323b090becfe281fbe4a4'
 
 management.security.roles: ACTUATOR
