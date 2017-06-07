@@ -81,4 +81,4 @@ eureka:
     enableSelfPreservation: false
     aWSAccessId: '{cipher}ae2db650a8ddeef2b3d479795cb8487a6028896d7bd1adddc268edce0e380d4700cc233ab7e3d6fe011eb74c15a9c02e'
     aWSSecretKey: '{cipher}51936b8481256a804eb44eb9723d34d9f1d675ccc5622b26c7cc4da159b0a0e285440cca68f711574e9bb5c08ed75154f0effdb81536330631fd154611cf9abc'
-    #asgName: EC2ContainerService_AUTO_SCALING_GROUP_CREATED_BY_ECS_FOR_MY_CLUSTER
+    asgName: EC2ContainerService-vbb-dev-EcsInstanceAsg-76SU2ZP6WHJH
