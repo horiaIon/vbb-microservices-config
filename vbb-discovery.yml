@@ -73,7 +73,7 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     eurekaServerURLContext: eureka
-    #eurekaServerPort: 8761
+    eurekaServerPort: 80
     useDnsForFetchingServiceUrls: true
   server:
     #responseCacheUpdateIntervalMs: 500
