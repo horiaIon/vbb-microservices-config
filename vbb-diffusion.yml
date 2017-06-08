@@ -3,11 +3,6 @@ hystrix:
   enabled: false
   command.default.execution.timeout.enabled: false
 
-############  Actuator properties #############
-management:
-  port: ${server.port}
-############  END Actuator properties #############
-
 vbb.app:
   users:
     boborel: '{cipher}5befb33659c72b2569005783dbbfda67766d5991d90ac5c5302dda8860f0bd5a70cb545a499fa7ce9a7c34c112c091906900174c9d0e869e59260fe628d83b0d'
