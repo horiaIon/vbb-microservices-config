@@ -5,7 +5,9 @@ security:
     name: '{cipher}51a0c7772cb362c79f0bb6f2d884cec7001ee523aa98ada57a7b68e269f948cdc9b4ef74abe61fc6be5115f4694eb588'
     password: '{cipher}b41023644bca630173be9ef89a38fb0c8798f059a65258cb29f057afef18fa23'
 
-management.security.roles: ACTUATOR
+management:
+  port: ${server.port}
+  security.roles: ACTUATOR
 
 ---
 ################################ DEV PROFILE ######################
@@ -27,9 +29,6 @@ eureka:
     #responseCacheUpdateIntervalMs: 500
     #evictionIntervalTimerInMs: 500
     enableSelfPreservation: false
-
-management:
-  port: ${server.port}
 
 ---
 ################################ DOCKER PROFILE ######################
@@ -53,9 +52,6 @@ eureka:
   server:
     enableSelfPreservation: false
     waitTimeInMsWhenSyncEmpty: 0
-
-management:
-  port: ${server.port}
 
 #spring.cloud.config.discovery.enabled: true
 
@@ -85,7 +81,7 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     eurekaServerURLContext: eureka
-    eurekaServerPort: 80
+    eurekaServerPort: 8761
     useDnsForFetchingServiceUrls: true
   server:
     #responseCacheUpdateIntervalMs: 500
