@@ -1,0 +1,113 @@
+zuul:
+  ignoredServices: "*"
+  add-proxy-headers: true
+  routes:
+    api-services:
+      path: /api-services/**
+      serviceId: vbb-api-services
+      stripPrefix: false
+    discovery:
+      path: /discovery/**
+      serviceId: vbb-discovery
+    diffusion:
+      path: /api-diffusion/**
+      serviceId: vbb-diffusion
+      stripPrefix: false
+    vbb-user:
+      sensitiveHeaders:
+      path: /uaa/**
+      serviceId: vbb-user
+      stripPrefix: false
+
+# Hystrix
+hystrix:
+  enabled: false
+  command.default.execution.timeout.enabled: false
+
+vbb-api-services:
+  ribbon:
+    ConnectTimeout: 10000 # Connect timeout used by Apache HttpClient
+    ReadTimeout: 20000 # Read timeout used by Apache HttpClient
+    maxAutoRetries: 2 # Max number of retries on the same server (excluding the first try)
+    MaxAutoRetriesNextServer: 2 # Max number of next servers to retry (excluding the first server)
+
+vbb-user:
+  ribbon:
+    ConnectTimeout: 10000 # Connect timeout used by Apache HttpClient
+    ReadTimeout: 20000 # Read timeout used by Apache HttpClient
+    maxAutoRetries: 2 # Max number of retries on the same server (excluding the first try)
+    MaxAutoRetriesNextServer: 2 # Max number of next servers to retry (excluding the first server)
+
+vbb-diffusion:
+  ribbon:
+    ConnectTimeout: 10000 # Connect timeout used by Apache HttpClient
+    ReadTimeout: 20000 # Read timeout used by Apache HttpClient
+    maxAutoRetries: 2 # Max number of retries on the same server (excluding the first try)
+    MaxAutoRetriesNextServer: 2 # Max number of next servers to retry (excluding the first server)
+
+spring:
+  aop:
+    proxy-target-class: true
+  freemarker:
+    cache: false
+  resources:
+    static-locations: classpath:/static/ui/
+
+---
+################################ DEV PROFILE ######################
+spring:
+  profiles: dev
+
+eureka:
+  instance:
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+    leaseRenewalIntervalInSeconds: 3
+    leaseExpirationIntervalInSeconds: 5
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+  client:
+    registerWithEureka: true
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: ${vbb-discovery.credentials.uri:http://127.0.0.1:8761}/eureka/
+
+---
+spring:
+  profiles: docker
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://vbb-discovery:8761/eureka/
+  instance:
+    leaseRenewalIntervalInSeconds: 3
+    leaseExpirationIntervalInSeconds: 5
+    preferIpAddress: true
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+
+---
+################################ AWS PROFILE ######################
+spring:
+  profiles: aws
+
+logging:
+  level:
+    ROOT: INFO
+    #org.springframework.security: INFO
+
+eureka:
+  instance:
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+  environment: test
+  datacenter: cloud
+  client:
+    eurekaServerDNSName: test.vbb.com
+    region: eu-central-1
+    registerWithEureka: true
+    fetchRegistry: true
+    eurekaServerURLContext: eureka
+    eurekaServerPort: 80
+    useDnsForFetchingServiceUrls: true
