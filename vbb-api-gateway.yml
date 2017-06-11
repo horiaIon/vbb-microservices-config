@@ -81,6 +81,8 @@ eureka:
     serviceUrl:
       defaultZone: http://vbb-discovery:8761/eureka/
   instance:
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
     leaseRenewalIntervalInSeconds: 3
     leaseExpirationIntervalInSeconds: 5
     preferIpAddress: true
