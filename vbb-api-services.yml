@@ -166,6 +166,22 @@ eureka:
 ################################ AWS PROFILE ######################
 spring:
   profiles: aws
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://vbb-db.cxjcgxqqm6fl.eu-central-1.rds.amazonaws.com:3306/vbb
+    username: root
+    password: '{cipher}7a2ea55fb06bdb11d19a3ce08972fd18d5f2f963dd0ad39820479d68b7824335f70b1c2e0934dc413780ae0adfa9f3bd'
+    maxActive: 100
+    testOnBorrow: true
+    validationQuery: SELECT 1
+  jpa:
+    database: MYSQL
+    show-sql: true
+    properties.hibernate:
+      format_sql: true
+      dialect: org.hibernate.dialect.MySQLDialect
+      cache:
+        use_second_level_cache: false
 
 logging:
   level:
