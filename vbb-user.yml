@@ -1,3 +1,9 @@
+server:
+  # Use different context-path to avoid session cookie overlapping
+  contextPath: /uaa
+  use-forward-headers: false
+  timezone: Europe/Bucharest
+
 captcha:
   useproxy: false
   proxyhost:
@@ -11,53 +17,32 @@ DefaultExecutor:
   queueCapacity: 10000
 ############### end async parameters
 
-spring.http.multipart.max-file-size: 200KB
-
+############  Actuator properties #############
 management:
+  context-path: /manage
   port: ${server.port}
-#  security:
-#    enabled: true
+############  END Actuator properties #############
 
-zuul:
-  ignoredServices: "*"
-  routes:
-    email:
-      path: /email/**
-      serviceId: vbb-email
-    api-services:
-      path: /api-services/**
-      serviceId: vbb-api-services
-      stripPrefix: false
-    discovery:
-      path: /discovery/**
-      serviceId: vbb-discovery
-    diffusion:
-      path: /api-diffusion/**
-      serviceId: vbb-diffusion
-      stripPrefix: false
+spring:
+  activemq:
+    brokerUrl: tcp://localhost:61613
+    
+security.user.name: boborel
+security.user.password: '{cipher}dbf312e6f4393b8b7527a907a5319efd3c4f7d098a9bd65d2b6a98408a0484e9'
+
+vbb:
+  securityRememberMeKey: '{cipher}f222f79ff6338ffc82d23398b5b70cdf2e4f6d1593ff25796c420c19497482b1'
+  app.basic.authentication: '{cipher}53329d2fb6c7c439c5dea14de5ddcb3c710bba4d48dd89dc5d3834a347dee9765122fbd02ef323b090becfe281fbe4a4'
 
 # Hystrix
 hystrix:
   enabled: false
   command.default.execution.timeout.enabled: false
-
-vbb-api-services:
-  ribbon:
+ribbon:
     ConnectTimeout: 10000 # Connect timeout used by Apache HttpClient
     ReadTimeout: 20000 # Read timeout used by Apache HttpClient
     maxAutoRetries: 2 # Max number of retries on the same server (excluding the first try)
     MaxAutoRetriesNextServer: 2 # Max number of next servers to retry (excluding the first server)
-    
-vbb-diffusion:
-  ribbon:
-    ConnectTimeout: 10000 # Connect timeout used by Apache HttpClient
-    ReadTimeout: 20000 # Read timeout used by Apache HttpClient
-    maxAutoRetries: 2 # Max number of retries on the same server (excluding the first try)
-    MaxAutoRetriesNextServer: 2 # Max number of next servers to retry (excluding the first server)
-
-vbb:
-  securityRememberMeKey: '{cipher}f222f79ff6338ffc82d23398b5b70cdf2e4f6d1593ff25796c420c19497482b1'
-  app.basic.authentication: '{cipher}53329d2fb6c7c439c5dea14de5ddcb3c710bba4d48dd89dc5d3834a347dee9765122fbd02ef323b090becfe281fbe4a4'
 
 ---
 ################################ DEV PROFILE ######################
@@ -79,38 +64,33 @@ spring:
       dialect: org.hibernate.dialect.MySQLDialect
       cache:
         use_second_level_cache: false
-  resources:
-    static-locations: classpath:/static/dist.dev/
-  devtools:
-    livereload.enabled: true
-#  devtools:
-#    livereload:
-#      port: 35728
+  devtools.livereload:
+    enabled: true
+    port: 35728
 
 eureka:
   instance:
-    leaseRenewalIntervalInSeconds: 3
+    statusPageUrlPath: /uaa/info
+    homePageUrlPath: /uaa/
+    healthCheckUrlPath: /uaa/health
+    registryFetchIntervalSeconds: 1
+    leaseRenewalIntervalInSeconds: 2
     leaseExpirationIntervalInSeconds: 5
     metadataMap:
       instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
   client:
+    initialInstanceInfoReplicationIntervalSeconds: 5
     registerWithEureka: true
+    fetchRegistry: true
     healthcheck:
       enabled: true
     serviceUrl:
       defaultZone: ${vcap.services.vbb-discovery.credentials.uri:http://127.0.0.1:8761}/eureka/
 
-server:
-  timezone: Europe/Bucharest
-
 application:
   url: http://localhost:8070/
 
-facebook:
-  app:
-    id: '{cipher}e38c68f3d7eb95a68aac1a82a0992a6a5c550165da1f92781cc7b474db01ec9c'
-    secret: '{cipher}1d88ff1613b7716001b12e428cfd951b42b21548fef353014e5404a8f48828920690992ad3b0e19c49ddc67e85449b3f2144248fe902de66c6a801d77ea2966a'
-vbb.gateway.url: http://localhost:8070
+vbb.gateway.url: http://localhost:8092
 ---
 spring:
   profiles: docker
@@ -147,3 +127,44 @@ facebook:
   app:
     id: '{cipher}e38c68f3d7eb95a68aac1a82a0992a6a5c550165da1f92781cc7b474db01ec9c'
     secret: '{cipher}1d88ff1613b7716001b12e428cfd951b42b21548fef353014e5404a8f48828920690992ad3b0e19c49ddc67e85449b3f2144248fe902de66c6a801d77ea2966a'
+    
+---
+################################ AWS PROFILE ######################
+spring:
+  profiles: aws
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://vbb-db.cxjcgxqqm6fl.eu-central-1.rds.amazonaws.com:3306/vbb
+    username: root
+    password: '{cipher}7a2ea55fb06bdb11d19a3ce08972fd18d5f2f963dd0ad39820479d68b7824335f70b1c2e0934dc413780ae0adfa9f3bd'
+    maxActive: 100
+    testOnBorrow: true
+    validationQuery: SELECT 1
+  jpa:
+    database: MYSQL
+    show-sql: false
+    properties.hibernate:
+      format_sql: true
+      dialect: org.hibernate.dialect.MySQLDialect
+      cache:
+        use_second_level_cache: false
+
+logging:
+  level:
+    ROOT: INFO
+    #org.springframework.security: INFO
+
+eureka:
+  instance:
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+  environment: test
+  datacenter: cloud
+  client:
+    eurekaServerDNSName: test.vbb.com
+    region: eu-central-1
+    registerWithEureka: true
+    fetchRegistry: true
+    eurekaServerURLContext: eureka
+    eurekaServerPort: 8761
+    useDnsForFetchingServiceUrls: true    
