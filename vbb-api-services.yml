@@ -1,5 +1,6 @@
 server:
   timezone: Europe/Bucharest
+  
 
 # Hystrix
 hystrix:
@@ -9,6 +10,7 @@ hystrix:
 
 ############  Actuator properties #############
 management:
+  context-path: /manage
   port: ${server.port}
 ############  END Actuator properties #############
 
