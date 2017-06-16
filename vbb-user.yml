@@ -19,7 +19,7 @@ DefaultExecutor:
 
 ############  Actuator properties #############
 management:
-  context-path: /manage
+  context-path: ${server.contextPath}/manage
   port: ${server.port}
 ############  END Actuator properties #############
 
