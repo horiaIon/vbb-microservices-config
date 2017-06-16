@@ -94,6 +94,8 @@ eureka:
 spring:
   profiles: aws
 
+server.port: 8092
+
 logging:
   level:
     ROOT: INFO
