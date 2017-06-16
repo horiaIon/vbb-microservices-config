@@ -168,3 +168,19 @@ eureka:
     eurekaServerURLContext: eureka
     eurekaServerPort: 8761
     useDnsForFetchingServiceUrls: true    
+
+facebook:
+  app:
+    id: '{cipher}40d165cab3a157159d8e92322b7d2380967af48985bb66bdc8bc49210eef2a97'
+    secret: '{cipher}4fe2d90d452886d8cea55a3bd8590df256eb56d6ae9e0ef38c831397cd2f72399f41129d512cf6733d4e3acc5a0baa5fe76a208b1a22da1b352a77a36111da75'
+  client:
+    clientId: '{cipher}40d165cab3a157159d8e92322b7d2380967af48985bb66bdc8bc49210eef2a97'
+    clientSecret: '{cipher}4fe2d90d452886d8cea55a3bd8590df256eb56d6ae9e0ef38c831397cd2f72399f41129d512cf6733d4e3acc5a0baa5fe76a208b1a22da1b352a77a36111da75'
+    accessTokenUri: https://graph.facebook.com/oauth/access_token
+    userAuthorizationUri: https://www.facebook.com/dialog/oauth
+    tokenName: oauth_token
+    authenticationScheme: query
+    clientAuthenticationScheme: form
+    scope: email,public_profile
+  resource:
+    userInfoUri: https://graph.facebook.com/me
