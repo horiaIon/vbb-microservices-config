@@ -171,11 +171,11 @@ eureka:
 
 facebook:
   app:
-    id: '{cipher}40d165cab3a157159d8e92322b7d2380967af48985bb66bdc8bc49210eef2a97'
-    secret: '{cipher}4fe2d90d452886d8cea55a3bd8590df256eb56d6ae9e0ef38c831397cd2f72399f41129d512cf6733d4e3acc5a0baa5fe76a208b1a22da1b352a77a36111da75'
+    id: '{cipher}b106cafe74a5742a87bbdf1ec4c780f85096e6638baf398f427167c13955a75e'
+    secret: '{cipher}2cf5df49e08ce110d5c6177f46b0d9116202db37c1951a12463adaa3178a31f390b443f70887bc74bc68d64678fbcfb72d9c7e8e411143a955196cf42d0f3cf0'
   client:
-    clientId: '{cipher}40d165cab3a157159d8e92322b7d2380967af48985bb66bdc8bc49210eef2a97'
-    clientSecret: '{cipher}4fe2d90d452886d8cea55a3bd8590df256eb56d6ae9e0ef38c831397cd2f72399f41129d512cf6733d4e3acc5a0baa5fe76a208b1a22da1b352a77a36111da75'
+    clientId: '{cipher}b106cafe74a5742a87bbdf1ec4c780f85096e6638baf398f427167c13955a75e'
+    clientSecret: '{cipher}2cf5df49e08ce110d5c6177f46b0d9116202db37c1951a12463adaa3178a31f390b443f70887bc74bc68d64678fbcfb72d9c7e8e411143a955196cf42d0f3cf0'
     accessTokenUri: https://graph.facebook.com/oauth/access_token
     userAuthorizationUri: https://www.facebook.com/dialog/oauth
     tokenName: oauth_token
