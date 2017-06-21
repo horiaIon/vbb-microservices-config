@@ -73,7 +73,7 @@ captcha:
 spring:
   profiles: dev
   activemq:
-    brokerUrl: tcp://localhost:61613
+    brokerUrl: tcp://52.28.179.167:61613
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/vbb
