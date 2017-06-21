@@ -99,6 +99,8 @@ spring:
 
 eureka:
   instance:
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
     leaseRenewalIntervalInSeconds: 3
     leaseExpirationIntervalInSeconds: 5
     metadataMap:
