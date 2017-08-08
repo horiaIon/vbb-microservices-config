@@ -193,6 +193,7 @@ spring:
 logging:
   level:
     ROOT: INFO
+    com.netflix.discovery.shared.resolver.aws: ERROR
     #org.springframework.security: INFO
 
 eureka:
