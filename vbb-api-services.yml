@@ -141,9 +141,9 @@ spring:
   profiles: docker
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://vbb-mysql:3306/${MYSQL_ENV_MYSQL_DATABASE}
+    url: jdbc:mysql://vbb-mysql:3306/vbb
     username: root
-    password: ${MYSQL_ENV_MYSQL_ROOT_PASSWORD}
+    password: asd1234
     maxActive: 100
     testOnBorrow: true
     validationQuery: SELECT 1
