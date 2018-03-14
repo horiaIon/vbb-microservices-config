@@ -139,6 +139,8 @@ eureka:
 ---
 spring:
   profiles: docker
+  activemq:
+    brokerUrl: tcp://vbb-diffusion:61613
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://vbb-mysql:3306/vbb
