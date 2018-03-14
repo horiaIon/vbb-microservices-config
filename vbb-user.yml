@@ -100,9 +100,9 @@ spring:
     validationQuery: SELECT 1
   jpa:
     database: MYSQL
-    show-sql: true
+    show-sql: false
     properties.hibernate:
-      format_sql: true
+      format_sql: false
       dialect: org.hibernate.dialect.MySQLDialect
       cache:
         use_second_level_cache: false
@@ -120,6 +120,9 @@ eureka:
     metadataMap:
       instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
 
+logging:
+  level:
+    ROOT: INFO
 ---
 ################################ AWS PROFILE ######################
 spring:
