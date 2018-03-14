@@ -92,9 +92,9 @@ spring:
   profiles: docker
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://${MYSQL_PORT_3306_TCP_ADDR}:${MYSQL_PORT_3306_TCP_PORT}/${MYSQL_ENV_MYSQL_DATABASE}
+    url: jdbc:mysql://vbb-mysql:3306/vbb
     username: root
-    password: ${MYSQL_ENV_MYSQL_ROOT_PASSWORD}
+    password: asd1234
     maxActive: 100
     testOnBorrow: true
     validationQuery: SELECT 1
@@ -107,23 +107,19 @@ spring:
       cache:
         use_second_level_cache: false
   resources:
-    static-locations: classpath:/static/dist.dev/
+    static-locations: classpath:/dist/
 
 eureka:
   client:
     serviceUrl:
       defaultZone: http://vbb-discovery:8761/eureka/
   instance:
+    leaseRenewalIntervalInSeconds: 3
+    leaseExpirationIntervalInSeconds: 5
     preferIpAddress: true
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
 
-server:
-  timezone: Europe/Bucharest
-
-facebook:
-  app:
-    id: '{cipher}e38c68f3d7eb95a68aac1a82a0992a6a5c550165da1f92781cc7b474db01ec9c'
-    secret: '{cipher}1d88ff1613b7716001b12e428cfd951b42b21548fef353014e5404a8f48828920690992ad3b0e19c49ddc67e85449b3f2144248fe902de66c6a801d77ea2966a'
-    
 ---
 ################################ AWS PROFILE ######################
 spring:
