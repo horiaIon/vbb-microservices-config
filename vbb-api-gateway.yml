@@ -77,6 +77,8 @@ eureka:
 ---
 spring:
   profiles: docker
+  resources:
+    static-locations: classpath:/vbb-ui/
 eureka:
   client:
     serviceUrl:
