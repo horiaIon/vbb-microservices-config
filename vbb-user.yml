@@ -1,6 +1,4 @@
 server:
-  # Use different context-path to avoid session cookie overlapping
-  contextPath: /uaa
   use-forward-headers: false
   timezone: Europe/Bucharest
 
@@ -19,7 +17,7 @@ DefaultExecutor:
 
 ############  Actuator properties #############
 management:
-  context-path: ${server.contextPath}/manage
+  context-path: /manage
   port: ${server.port}
 ############  END Actuator properties #############
     
