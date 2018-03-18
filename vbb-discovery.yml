@@ -6,6 +6,7 @@ security:
     password: '{cipher}b41023644bca630173be9ef89a38fb0c8798f059a65258cb29f057afef18fa23'
 
 management:
+  context-path: /manage
   port: ${server.port}
   security.roles: ACTUATOR
 
@@ -16,8 +17,8 @@ spring:
 
 eureka:
   instance:
-    statusPageUrlPath: ${management.context-path}/info
-    healthCheckUrlPath: ${management.context-path}/health
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
     metadataMap:
       configPath: /config
       user: '{cipher}200be6699cf9cdc2a7179ceb7e928efae3b6b2dccf490b73ef92bb2649fe90e370b100fda51290614dda6cf4cae5fbf3'
