@@ -61,8 +61,8 @@ spring:
 
 eureka:
   instance:
-    statusPageUrlPath: ${management.context-path}/info
-    healthCheckUrlPath: ${management.context-path}/health
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
     leaseRenewalIntervalInSeconds: 3
     leaseExpirationIntervalInSeconds: 5
     metadataMap:
@@ -84,8 +84,8 @@ eureka:
     serviceUrl:
       defaultZone: http://vbb-discovery:8761/eureka/
   instance:
-    statusPageUrlPath: ${management.context-path}/info
-    healthCheckUrlPath: ${management.context-path}/health
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
     leaseRenewalIntervalInSeconds: 3
     leaseExpirationIntervalInSeconds: 5
     preferIpAddress: true
