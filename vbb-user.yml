@@ -66,9 +66,9 @@ spring:
 
 eureka:
   instance:
-    statusPageUrlPath: /uaa/info
+    statusPageUrlPath: /info
     homePageUrlPath: /uaa/
-    healthCheckUrlPath: /uaa/health
+    healthCheckUrlPath: /health
     registryFetchIntervalSeconds: 1
     leaseRenewalIntervalInSeconds: 2
     leaseExpirationIntervalInSeconds: 5
