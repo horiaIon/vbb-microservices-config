@@ -18,7 +18,7 @@ eureka:
     statusPageUrlPath: /info
     healthCheckUrlPath: /health
   client:
-    registerWithEureka: false
+    registerWithEureka: true
     fetchRegistry: false
   server:
     #responseCacheUpdateIntervalMs: 500
@@ -36,7 +36,7 @@ eureka:
     statusPageUrlPath: /info
     healthCheckUrlPath: /health
   client:
-    registerWithEureka: false
+    registerWithEureka: true
     fetchRegistry: false
     serviceUrl:
       defaultZone: http://vbb-discovery:${server.port}/eureka/
