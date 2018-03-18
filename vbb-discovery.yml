@@ -24,7 +24,7 @@ eureka:
       user: '{cipher}200be6699cf9cdc2a7179ceb7e928efae3b6b2dccf490b73ef92bb2649fe90e370b100fda51290614dda6cf4cae5fbf3'
       password: '{cipher}1a54f43cebf2fd3beafe64f45fbd857446dfce5acaca45b0f618d4b4a693e926'
   client:
-    registerWithEureka: true
+    registerWithEureka: false
     fetchRegistry: false
   server:
     #responseCacheUpdateIntervalMs: 500
@@ -46,7 +46,7 @@ eureka:
       user: '{cipher}200be6699cf9cdc2a7179ceb7e928efae3b6b2dccf490b73ef92bb2649fe90e370b100fda51290614dda6cf4cae5fbf3'
       password: '{cipher}1a54f43cebf2fd3beafe64f45fbd857446dfce5acaca45b0f618d4b4a693e926'
   client:
-    registerWithEureka: true
+    registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
       defaultZone: http://vbb-discovery:${server.port}/eureka/
