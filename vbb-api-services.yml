@@ -1,7 +1,5 @@
 server:
-  port: ${VBB_SERVICES_PORT:8065}
-
-server:
+#  port: ${VBB_SERVICES_PORT:8065}
   timezone: Europe/Bucharest
   
 # Hystrix
