@@ -77,13 +77,23 @@ eureka:
 ---
 spring:
   profiles: docker
+  cloud:
+    inetutils:
+      ignored-interfaces:
+        - eth0
+        - eth1
+        - eth2
+        - eth3
+        - lo
   resources:
     static-locations: classpath:/vbb-ui/
+    
 eureka:
   client:
     serviceUrl:
       defaultZone: http://vbb-discovery:8761/eureka/
   instance:
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
     statusPageUrlPath: /info
     healthCheckUrlPath: /health
     leaseRenewalIntervalInSeconds: 3
