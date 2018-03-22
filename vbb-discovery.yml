@@ -1,3 +1,6 @@
+server:
+  port: ${VBB_DISCOVERY_PORT:8761}
+
 security:
   user:
     name: '{cipher}51a0c7772cb362c79f0bb6f2d884cec7001ee523aa98ada57a7b68e269f948cdc9b4ef74abe61fc6be5115f4694eb588'
