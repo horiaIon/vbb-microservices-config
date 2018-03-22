@@ -1,3 +1,6 @@
+server:
+  port: ${VBB_GATEWAY_PORT:8092}
+
 zuul:
   ignoredServices: "*"
   add-proxy-headers: true
