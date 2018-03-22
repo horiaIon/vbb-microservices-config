@@ -1,7 +1,9 @@
 server:
+  port: ${VBB_SERVICES_PORT:8065}
+
+server:
   timezone: Europe/Bucharest
   
-
 # Hystrix
 hystrix:
   enabled: false
