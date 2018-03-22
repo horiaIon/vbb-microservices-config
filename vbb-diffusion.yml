@@ -1,3 +1,6 @@
+server:
+  port: ${VBB_DIFFUSION_PORT:8093}
+
 # Hystrix
 hystrix:
   enabled: false
