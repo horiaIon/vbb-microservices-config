@@ -29,9 +29,18 @@ eureka:
 ################################ DOCKER PROFILE ######################
 spring:
   profiles: docker
+  cloud:
+    inetutils:
+      ignored-interfaces:
+        - eth0
+        - eth1
+        - eth2
+        - eth3
+        - lo
 
 eureka:
   instance:
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
     hostname: vbb-discovery
     statusPageUrlPath: /info
     healthCheckUrlPath: /health
