@@ -139,6 +139,14 @@ eureka:
 ---
 spring:
   profiles: docker
+  cloud:
+    inetutils:
+      ignored-interfaces:
+        - eth0
+        - eth1
+        - eth2
+        - eth3
+        - lo
   activemq:
     brokerUrl: tcp://vbb-diffusion:61613
   datasource:
@@ -163,15 +171,13 @@ eureka:
     serviceUrl:
       defaultZone: http://vbb-discovery:8761/eureka/
   instance:
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
     leaseRenewalIntervalInSeconds: 3
     leaseExpirationIntervalInSeconds: 5
     preferIpAddress: true
     metadataMap:
       instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
 
-logging:
-  level:
-    ROOT: INFO
 ---
 ################################ AWS PROFILE ######################
 spring:
