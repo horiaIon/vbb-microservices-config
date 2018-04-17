@@ -128,6 +128,22 @@ eureka:
     metadataMap:
       instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
 
+facebook:
+  app:
+    id: '{cipher}b106cafe74a5742a87bbdf1ec4c780f85096e6638baf398f427167c13955a75e'
+    secret: '{cipher}2cf5df49e08ce110d5c6177f46b0d9116202db37c1951a12463adaa3178a31f390b443f70887bc74bc68d64678fbcfb72d9c7e8e411143a955196cf42d0f3cf0'
+  client:
+    clientId: '{cipher}b106cafe74a5742a87bbdf1ec4c780f85096e6638baf398f427167c13955a75e'
+    clientSecret: '{cipher}2cf5df49e08ce110d5c6177f46b0d9116202db37c1951a12463adaa3178a31f390b443f70887bc74bc68d64678fbcfb72d9c7e8e411143a955196cf42d0f3cf0'
+    accessTokenUri: https://graph.facebook.com/oauth/access_token
+    userAuthorizationUri: https://www.facebook.com/dialog/oauth
+    tokenName: oauth_token
+    authenticationScheme: query
+    clientAuthenticationScheme: form
+    scope: email,public_profile
+  resource:
+    userInfoUri: https://graph.facebook.com/me
+
 logging:
   level:
     ROOT: INFO
