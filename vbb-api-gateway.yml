@@ -24,29 +24,11 @@ zuul:
 
 # Hystrix
 hystrix:
-#  enabled: false
-  command.default.execution.isolation.thread.timeoutInMilliseconds: 20000
+  command.default.execution.isolation.thread.timeoutInMilliseconds: 30000
 
-vbb-api-services:
-  ribbon:
-    ConnectTimeout: 10000 # Connect timeout used by Apache HttpClient
-    ReadTimeout: 20000 # Read timeout used by Apache HttpClient
-    maxAutoRetries: 2 # Max number of retries on the same server (excluding the first try)
-    MaxAutoRetriesNextServer: 2 # Max number of next servers to retry (excluding the first server)
-
-vbb-user:
-  ribbon:
-    ConnectTimeout: 10000 # Connect timeout used by Apache HttpClient
-    ReadTimeout: 20000 # Read timeout used by Apache HttpClient
-    maxAutoRetries: 2 # Max number of retries on the same server (excluding the first try)
-    MaxAutoRetriesNextServer: 2 # Max number of next servers to retry (excluding the first server)
-
-vbb-diffusion:
-  ribbon:
-    ConnectTimeout: 10000 # Connect timeout used by Apache HttpClient
-    ReadTimeout: 20000 # Read timeout used by Apache HttpClient
-    maxAutoRetries: 2 # Max number of retries on the same server (excluding the first try)
-    MaxAutoRetriesNextServer: 2 # Max number of next servers to retry (excluding the first server)
+ribbon:
+  ReadTimeout: 20000
+  ConnectTimeout: 20000
 
 spring:
   aop:
