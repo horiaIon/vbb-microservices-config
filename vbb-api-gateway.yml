@@ -24,9 +24,8 @@ zuul:
 
 # Hystrix
 hystrix:
-  enabled: false
-  command.default.execution:
-    isolation.thread.timeoutInMilliseconds: 20000
+#  enabled: false
+  command.default.execution.isolation.thread.timeoutInMilliseconds: 20000
 
 vbb-api-services:
   ribbon:
