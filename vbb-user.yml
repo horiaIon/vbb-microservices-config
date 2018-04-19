@@ -34,8 +34,8 @@ hystrix:
   enabled: false
   command.default.execution.timeout.enabled: false
 ribbon:
-    ConnectTimeout: 10000 # Connect timeout used by Apache HttpClient
-    ReadTimeout: 20000 # Read timeout used by Apache HttpClient
+    ConnectTimeout: 60000 # Connect timeout used by Apache HttpClient
+    ReadTimeout: 60000 # Read timeout used by Apache HttpClient
     maxAutoRetries: 2 # Max number of retries on the same server (excluding the first try)
     MaxAutoRetriesNextServer: 2 # Max number of next servers to retry (excluding the first server)
 
