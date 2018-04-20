@@ -49,12 +49,12 @@ eureka:
     healthCheckUrlPath: /health
   client:
     registerWithEureka: true
-    fetchRegistry: false
+    fetchRegistry: true
     serviceUrl:
       defaultZone: http://vbb-discovery:${server.port}/eureka/
   server:
-    enableSelfPreservation: false
-    waitTimeInMsWhenSyncEmpty: 0
+#    enableSelfPreservation: false
+#    waitTimeInMsWhenSyncEmpty: 0
 ---
 ################################ AWS PROFILE ######################
 spring:
