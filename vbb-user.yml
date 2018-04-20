@@ -1,5 +1,5 @@
 server:
-#  port: ${VBB_USER_PORT:8070}
+  port: ${VBB_USER_PORT:8070}
   use-forward-headers: false
   timezone: Europe/Bucharest
 
