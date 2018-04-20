@@ -47,12 +47,14 @@ spring:
 
 eureka:
   client:
+    registerWithEureka: true
+    fetchRegistry: true
     serviceUrl:
       defaultZone: http://vbb-discovery:8761/eureka/
   instance:
     instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
-    leaseRenewalIntervalInSeconds: 3
-    leaseExpirationIntervalInSeconds: 5
+#    leaseRenewalIntervalInSeconds: 3
+#    leaseExpirationIntervalInSeconds: 5
     preferIpAddress: true
     metadataMap:
       instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
