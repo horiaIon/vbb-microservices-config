@@ -59,7 +59,7 @@ eureka:
 
 diffusion:
   endpoints:
-    - 127.0.0.1
+    - '{cipher}2faff49c8bb010a3e87357be9674be1658a19f4b7a9bca59a40ddb77c7ce3356'
 ---
 spring:
   profiles: docker
