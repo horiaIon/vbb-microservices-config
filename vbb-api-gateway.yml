@@ -92,7 +92,7 @@ eureka:
 
 diffusion:
   endpoints:
-    - 51.15.212.252
+    - '{cipher}f7379f068e40508b3e87d9b8e231239cb1ea2deb34f584dc6c09f994fe136f1a'
 ---
 ################################ AWS PROFILE ######################
 spring:
