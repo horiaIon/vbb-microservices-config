@@ -36,6 +36,9 @@ spring:
     
 security.user.name: boborel
 security.user.password: '{cipher}dbf312e6f4393b8b7527a907a5319efd3c4f7d098a9bd65d2b6a98408a0484e9'
+diffusion:
+  endpoints:
+    - 51.15.212.252
 
 ---
 ################################ DEV PROFILE ######################
