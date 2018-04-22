@@ -89,14 +89,14 @@ vbb.gateway.url: http://localhost:8092
 ---
 spring:
   profiles: docker
-  cloud:
-    inetutils:
-      ignored-interfaces:
-        - eth0
-        - eth1
-        - eth2
-        - eth3
-        - lo
+#  cloud:
+#    inetutils:
+#      ignored-interfaces:
+#        - eth0
+#        - eth1
+#        - eth2
+#        - eth3
+#        - lo
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://vbb-mysql:3306/vbb
