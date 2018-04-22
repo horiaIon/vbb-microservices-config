@@ -36,6 +36,12 @@ eureka:
 ---
 spring:
   profiles: docker
+  cloud:
+  inetutils:
+    preferredNetworks:
+      - 10.0
+    ignored-interfaces:
+      - eth0
 #  cloud:
 #    inetutils:
 #      ignored-interfaces:
@@ -57,8 +63,8 @@ eureka:
     instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
 #    leaseRenewalIntervalInSeconds: 3
 #    leaseExpirationIntervalInSeconds: 5
-    preferIpAddress: false
-    hostname: ${HOST_NAME}
+    preferIpAddress: true
+#    hostname: ${HOST_NAME}
     metadataMap:
       instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
 
