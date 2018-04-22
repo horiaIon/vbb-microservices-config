@@ -139,14 +139,14 @@ eureka:
 ---
 spring:
   profiles: docker
-  cloud:
-    inetutils:
-      ignored-interfaces:
-        - eth0
-        - eth1
-        - eth2
-        - eth3
-        - lo
+#  cloud:
+#    inetutils:
+#      ignored-interfaces:
+#        - eth0
+#        - eth1
+#        - eth2
+#        - eth3
+#        - lo
   activemq:
     brokerUrl: tcp://vbb-diffusion:61613
   datasource:
