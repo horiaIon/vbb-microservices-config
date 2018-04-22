@@ -112,29 +112,6 @@ eureka:
     serviceUrl:
       defaultZone: ${vcap.services.vbb-discovery.credentials.uri:http://127.0.0.1:8761}/eureka/
 vbb.gateway.url: http://localhost:8092
----
-spring:
-  profiles: cloud
-  jpa:
-    database: MYSQL
-    show-sql: false
-    properties.hibernate:
-      default_schema: '{cipher}6000382b5c9a9b2c52da6b64b54a5317ddb586a9fc5f542e6d98af683ab08172ff137a4edaeed08a95cff3105aee88472f17'
-      format_sql: false
-      dialect: org.hibernate.dialect.MySQLDialect
-      cache:
-        use_second_level_cache: false
-#        TODO de vazut cash distribuit in cloud
-#        use_second_level_cache: true
-#        use_query_cache: true
-#        provider_configuration: classpath:ehcache.xml
-#        use_structured_entries: true
-#        region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
-eureka:
-  instance:
-    #I do this because my services don’t use fixed DNS. APPLICATION_DOMAIN is an environment variable I set in my deploy scripts that tells a service what its externally referenceable URI is
-    hostname: ${APPLICATION_DOMAIN}
-    nonSecurePort: 80
 
 ---
 spring:
@@ -170,13 +147,16 @@ eureka:
   client:
     registerWithEureka: true
     fetchRegistry: true
+    healthcheck:
+      enabled: true
     serviceUrl:
       defaultZone: http://vbb-discovery:8761/eureka/
   instance:
     instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 #    leaseRenewalIntervalInSeconds: 3
 #    leaseExpirationIntervalInSeconds: 5
-    preferIpAddress: true
+    preferIpAddress: false
+    hostname: ${HOST_NAME}
     metadataMap:
       instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 
