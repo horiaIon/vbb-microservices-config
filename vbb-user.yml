@@ -164,6 +164,8 @@ facebook:
 logging:
   level:
     ROOT: INFO
+    org.springframework:
+      security: DEBUG
 ---
 ################################ AWS PROFILE ######################
 spring:
