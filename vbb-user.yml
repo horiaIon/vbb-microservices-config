@@ -89,6 +89,12 @@ vbb.gateway.url: http://localhost:8092
 ---
 spring:
   profiles: docker
+  cloud:
+  inetutils:
+    preferredNetworks:
+      - 10.0
+    ignored-interfaces:
+      - eth0
 #  cloud:
 #    inetutils:
 #      ignored-interfaces:
@@ -128,8 +134,8 @@ eureka:
     instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 #    leaseRenewalIntervalInSeconds: 3
 #    leaseExpirationIntervalInSeconds: 5
-    preferIpAddress: false
-    hostname: ${HOST_NAME}
+    preferIpAddress: true
+#    hostname: ${HOST_NAME}
     metadataMap:
       instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 
