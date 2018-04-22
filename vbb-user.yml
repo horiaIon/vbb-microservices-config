@@ -123,12 +123,12 @@ eureka:
     serviceUrl:
       defaultZone: http://vbb-discovery:8761/eureka/
   instance:
-    instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 #    leaseRenewalIntervalInSeconds: 3
 #    leaseExpirationIntervalInSeconds: 5
     preferIpAddress: true
     metadataMap:
-      instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 
 facebook:
   app:
