@@ -42,11 +42,11 @@ spring:
 #        - lo
 
 eureka:
-  instance:
-    instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
-    hostname: vbb-discovery
-    statusPageUrlPath: /info
-    healthCheckUrlPath: /health
+#  instance:
+#    instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+#    hostname: vbb-discovery
+#    statusPageUrlPath: /info
+#    healthCheckUrlPath: /health
   client:
     registerWithEureka: false
     fetchRegistry: false
