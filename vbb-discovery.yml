@@ -60,8 +60,8 @@ eureka:
     statusPageUrlPath: /info
     healthCheckUrlPath: /health
   client:
-    registerWithEureka: true
-    fetchRegistry: true
+    registerWithEureka: false
+    fetchRegistry: false
     serviceUrl:
       defaultZone: http://vbb-discovery:${server.port}/eureka/
   server:
