@@ -67,7 +67,7 @@ spring:
     inetutils:
       preferredNetworks:
         - 10.0
-      ignored-interfaces:
+      ignoredInterfaces:
         - eth0
         - eth1
         - eth2
