@@ -53,7 +53,8 @@ eureka:
     serviceUrl:
       defaultZone: http://vbb-discovery:${server.port}/eureka/
   server:
-#    enableSelfPreservation: false
+    enableSelfPreservation: false
+    evictionIntervalTimerInMs: 1000
 #    waitTimeInMsWhenSyncEmpty: 0
 ---
 ################################ AWS PROFILE ######################
