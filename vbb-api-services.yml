@@ -1,5 +1,5 @@
 server:
-#  port: ${VBB_SERVICES_PORT:8065}
+  port: ${VBB_SERVICES_PORT:8065}
   timezone: Europe/Bucharest
   
 # Hystrix
@@ -11,7 +11,7 @@ hystrix:
 ############  Actuator properties #############
 management:
   context-path: /manage
-#  port: ${server.port}
+  port: ${server.port}
 ############  END Actuator properties #############
 
 
