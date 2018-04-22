@@ -63,14 +63,14 @@ diffusion:
 ---
 spring:
   profiles: docker
-  cloud:
-    inetutils:
-      ignored-interfaces:
-        - eth0
-        - eth1
-        - eth2
-        - eth3
-        - lo
+#  cloud:
+#    inetutils:
+#      ignored-interfaces:
+#        - eth0
+#        - eth1
+#        - eth2
+#        - eth3
+#        - lo
   resources:
     static-locations: classpath:/vbb-ui/
     
