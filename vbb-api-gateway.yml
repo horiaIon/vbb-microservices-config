@@ -69,10 +69,12 @@ spring:
         - 10.0
       ignored-interfaces:
         - eth0
-#        - eth1
-#        - eth2
-#        - eth3
-#        - lo
+        - eth1
+        - eth2
+        - eth3
+        - eth4
+        - eth5
+        - lo
   resources:
     static-locations: classpath:/vbb-ui/
     
