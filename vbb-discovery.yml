@@ -36,7 +36,7 @@ spring:
   inetutils:
     preferredNetworks:
       - 10.0
-    ignored-interfaces:
+    ignoredInterfaces:
       - eth0
       - eth1
       - eth2
@@ -54,14 +54,14 @@ spring:
 #        - lo
 
 eureka:
-#  instance:
-#    instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+  instance:
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
 #    hostname: vbb-discovery
-#    statusPageUrlPath: /info
-#    healthCheckUrlPath: /health
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
   client:
-    registerWithEureka: false
-    fetchRegistry: false
+    registerWithEureka: true
+    fetchRegistry: true
     serviceUrl:
       defaultZone: http://vbb-discovery:${server.port}/eureka/
   server:
