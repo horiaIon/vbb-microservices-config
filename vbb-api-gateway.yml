@@ -101,7 +101,7 @@ logging:
   level:
     ROOT: INFO
     org.springframework:
-      security: DEBUG
+      security: INFO
 
 diffusion:
   endpoints:
