@@ -28,10 +28,10 @@ ribbon:
     enable: true
   ReadTimeout: 5000
   ConnectTimeout: 5000
-  MaxAutoRetries: 1
-  MaxAutoRetriesNextServer: 1
+  MaxAutoRetries: 2
+  MaxAutoRetriesNextServer: 2
 
-hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 50000
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 95000
 
 #hystrix.command.default.execution.timeout.enabled: false
 #ribbon:
