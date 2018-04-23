@@ -23,10 +23,20 @@ zuul:
       stripPrefix: false
 
 # Hystrix
-hystrix.command.default.execution.timeout.enabled: false
 ribbon:
-  ConnectTimeout: 40000
-  ReadTimeout: 40000
+  eureka:
+    enable: true
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+  MaxAutoRetries:1
+  MaxAutoRetriesNextServer:1
+
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 50000
+
+#hystrix.command.default.execution.timeout.enabled: false
+#ribbon:
+#  ConnectTimeout: 40000
+#  ReadTimeout: 40000
 
 spring:
   aop:
