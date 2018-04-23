@@ -165,7 +165,7 @@ logging:
   level:
     ROOT: INFO
     org.springframework:
-      security: DEBUG
+      security: INFO
 ---
 ################################ AWS PROFILE ######################
 spring:
