@@ -31,6 +31,7 @@ ribbon:
   MaxAutoRetries: 2
   MaxAutoRetriesNextServer: 2
 
+#(ribbon.ConnectTimeout + ribbon.ReadTimeout) * (ribbon.MaxAutoRetries + 1) * (ribbon.MaxAutoRetriesNextServer + 1)
 hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 95000
 
 #hystrix.command.default.execution.timeout.enabled: false
