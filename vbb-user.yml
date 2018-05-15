@@ -39,6 +39,10 @@ ribbon:
     maxAutoRetries: 2 # Max number of retries on the same server (excluding the first try)
     MaxAutoRetriesNextServer: 2 # Max number of next servers to retry (excluding the first server)
 
+spring:
+  resources:
+    static-locations: classpath:/user-ui/
+
 ---
 ################################ DEV PROFILE ######################
 spring:
