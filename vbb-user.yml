@@ -130,7 +130,7 @@ spring:
       cache:
         use_second_level_cache: false
   resources:
-    static-locations: classpath:/dist/
+    static-locations: classpath:/user-ui/
 
 eureka:
   client:
