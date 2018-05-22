@@ -40,6 +40,8 @@ hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 95000
 #  ReadTimeout: 40000
 
 spring:
+  mvc:
+    favicon.enabled: false
   aop:
     proxy-target-class: true
   freemarker:
